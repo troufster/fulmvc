@@ -37,9 +37,14 @@
     </li>
 
     <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+        <h5>Areas</h5>
+        To accommodate large projects, ASP.NET MVC lets you partition Web applications 
+        into smaller units that are referred to as areas. Areas provide a way to separate 
+        a large MVC Web application into smaller functional groupings. An area is 
+        effectively an MVC structure inside an application. An application could contain 
+        several MVC structures (areas). 
+        <a href="http://msdn.microsoft.com/en-us/library/ee671793(v=vs.100).aspx">Learn more…</a>
+        <br />
+        @Html.ActionLink("Majorbyte's Area", "Index", "Major", new { area = "Majorbyte" }, null)
     </li>
 </ol>
