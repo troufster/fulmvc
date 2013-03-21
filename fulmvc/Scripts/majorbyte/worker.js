@@ -1,6 +1,7 @@
 ﻿var timeOut = 0;
 var running = false;
 var fake = true;
+
 function timedCount() {
     console.log("timedCount");
     var xhr;
