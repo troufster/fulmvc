@@ -708,3 +708,11 @@ https://github.com/ghinda/css-toggle-switch
 .checkbox a {
     color: #38A3D4;
 }
+
+
+.tiny
+{
+    padding:0px;
+    margin:0px;
+    width:45px;
+}

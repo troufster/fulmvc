@@ -163,6 +163,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Majorbyte\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Majorbyte\Controllers\HtmlController.cs" />
     <Compile Include="Areas\Majorbyte\MajorbyteAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -236,6 +237,7 @@
     <Content Include="Areas\Majorbyte\Views\Shared\_MajorLayout.cshtml" />
     <Content Include="Areas\Majorbyte\Views\Home\Index.cshtml" />
     <Content Include="Areas\Majorbyte\Views\Home\WebWorker.cshtml" />
+    <Content Include="Areas\Majorbyte\Views\Html\Index.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
