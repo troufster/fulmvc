@@ -1,11 +1,16 @@
 ﻿var timeOut = 0;
 var running = false;
+var fake = true;
 function timedCount() {
     console.log("timedCount");
     var xhr;
     try {
         xhr = new XMLHttpRequest();
-        xhr.open('GET', "/majorbyte/home/cpu", false);
+        if (fake) {
+            xhr.open('GET', "/majorbyte/home/fake", false);
+        } else {
+            xhr.open('GET', "/majorbyte/home/cpu", false);
+        }
         xhr.setRequestHeader('Content-Type', 'text/plain');
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
@@ -36,6 +41,12 @@ self.onmessage = function (e) {
         case "stop":
             running = false;;
             break;
+        case "mode":
+            if (e.data.value === "fake") {
+                fake = true;
+            } else {
+                fake = false;
+            }
     }
 }
 

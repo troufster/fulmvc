@@ -7,15 +7,17 @@
 <input type="button" value="start" id="start" />
 <input type="range"  min="1" max="1000" id="slider" value="1000"/><input type="text" readonly="true" id="sliderVal" value="1000" class="tiny"/>ms
 <br />
-<label class="checkbox toggle android" onclick="">
-    http://ghinda.net/css-toggle-switch/
-  <input type="checkbox">
-  <p>Wireless
-    <span>On</span>
-    <span>Off</span>
-  </p>
-  <a class="slide-button"></a>
-</label>
+
+	<label class="checkbox toggle android" onclick="">
+		<input type="checkbox" checked="checked" id="faking" />
+		<p>
+			Fake data
+			<span>On</span>
+			<span>Off</span>
+		</p>
+					
+		<a class="slide-button"></a>
+	</label>
 <br />
 <canvas id="myCanvas" width="600" height="220" style="background-color:#ffffff; border: 1px solid black; "></canvas>
 <input type="text" readonly="true" id="cpuVal" class="tiny" style="text-align:right"/>%
@@ -138,6 +140,15 @@
             $("#sliderVal").val(val);
         });
 
+        $("#faking").on("change", function () {
+            var val = $(this).attr('checked');
+            console.log(val);
+            if (val) {
+                worker.postMessage({ 'cmd': 'mode', 'value': 'fake' });
+            } else {
+                worker.postMessage({ 'cmd': 'mode', 'value': 'real' });
+            }
+        });
         worker.postMessage({ 'cmd': 'change', 'value': $("#slider").val() });
     });
 </script>

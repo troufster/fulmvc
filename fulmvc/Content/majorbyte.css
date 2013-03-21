@@ -8,7 +8,7 @@ body {
     background-color: #fff;
     border-top: solid 10px #FCE75D;
     color: #333;
-    font-size: .85em;
+    font-size: 100%;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
@@ -424,9 +424,6 @@ label {
     font-weight: 600;
 }
 
-label.checkbox {
-    display: inline;
-}
 
 input, textarea {
     border: 1px solid #e2e2e2;
@@ -529,127 +526,185 @@ input[type="checkbox"].input-validation-error {
 }
 
 
-.android.toggle { 
-border: 2px solid #B6B6B6;
+
+
+/* ------------------------------------------
+CSS TOGGLE SWITCHES (IonuÈ› Colceriu)
+Licensed under Unlicense 
+https://github.com/ghinda/css-toggle-switch
+------------------------------------------ */
+
+/* Hide by default */
+
+.switch .slide-button,
+.toggle p span {
+	display: none;
 }
 
-.toggle, .switch { 
-display: block;
-height: 30px;
-}
+/* Toggle Switches */
 
-.toggle { 
-margin-left: 100px;
-padding: 0px;
-position: relative;
-}
+/* We can't test for a specific feature,
+ * so we only target browsers with support for media queries.
+ */
+@media only screen {
 
-.android { 
-background-color: #B6B6B6;
-color: #FFFFFF;
-}
+	/* Checkbox
+	 */
+	.toggle {
+		position: relative;
+		padding: 0;
+		margin-left: 100px;
+	}
 
-.toggle input { 
-opacity: 0;
-position: absolute;
-z-index: 5;
-}
+	/* Position the label over all the elements, except the slide-button
+	 * Clicking anywhere on the label will change the switch-state
+	 */
+	.toggle label {
+		position: relative;
+		z-index: 3;
+		
+		display: block;
+		width: 100%;
+	}
 
-.switch *, .toggle * { 
-box-sizing: border-box;
-}
+	/* Don't hide the input from screen-readers and keyboard access
+	 */
+	.toggle input {
+		position: absolute;
+		opacity: 0;
+		z-index: 5;
+	}
+	
+	.toggle p {
+		position: absolute;
+		left: -100px;
+		
+		width: 100%;
+		margin: 0;
+		padding-right: 100px;
+		
+		text-align: left;
+	}
+	
+	.toggle p span {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 5;
+		
+		display: block;
+		width: 50%;
+		margin-left: 100px;
+		
+		text-align: center;
+	}
+	
+	.toggle p span:last-child {
+		left: 50%;
+	}
 
-input { 
-border-bottom-width: 2px;
-border-left-width: 2px;
-border-right-width: 2px;
-border-top-width: 2px;
-color: #000000;
-font-family: use-lang-def;
-font-size: 13px;
-font-weight: 400;
-margin: 3px 3px 3px 4px;
-padding: 1px;
-text-align: default;
-text-indent: 0px;
-text-transform: none;
- }
+	.toggle .slide-button {
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 4;
+		
+		display: block;
+		width: 50%;
+		height: 100%;
+		padding: 0;
+	}
 
-.toggle.android p, .toggle.candy p { 
-color: #FFFFFF !important;
-}
-.android p { 
 
-color: #333333;
-}
-.toggle label, .toggle p, .switch label { 
-line-height: 30px;
-vertical-align: middle;
-}
-.toggle p { 
-left: -100px;
-margin: 0px;
-padding-right: 100px;
-position: absolute;
-text-align: left;
-width: 100%;
-}
-.switch *, .toggle * { 
-box-sizing: border-box;
-}
+	/* Shared */
+	.toggle {
+		display: block;
+		height: 30px;
+	}
+	
+	.toggle * {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		-o-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	
+	.toggle .slide-button {
+		display: block;
+		
+		-webkit-transition: all 0.3s ease-out;
+		-moz-transition: all 0.3s ease-out;
+		-ms-transition: all 0.3s ease-out;
+		-o-transition: all 0.3s ease-out;
+		transition: all 0.3s ease-out;
+	}
+	
+	.toggle label,
+	.toggle p {
+		line-height: 30px;
+		vertical-align: middle;
+	}
+	
+	.toggle input:checked ~ .slide-button {
+		right: 50%;
+	}
+	
+	/* Outline the toggles when the inputs are focused */
+	.toggle input:focus ~ .slide-button {
+		outline: 1px dotted #888;
+	}
+	
+	/* Bugfix for older Webkit, including mobile Webkit. Adapted from:
+	 * http://css-tricks.com/webkit-sibling-bug/
+	 */
+	.toggle {
+		-webkit-animation: bugfix infinite 1s;
+	}
+	
+	@-webkit-keyframes bugfix { from { position: relative; } to { position: relative; } }
 
-.toggle p span { 
-display: block;
-left: 0px;
-margin-left: 100px;
-position: absolute;
-text-align: center;
-top: 0px;
-width: 50%;
-z-index: 5;
-}
 
-.switch .slide-button, .toggle p span { 
-display: none;
-}
+	/* Standalone Themes */
 
-.android.switch, .android span { 
-text-transform: uppercase;
-}
+	/* Android Theme
+	 * Based on Holo
+	 */
+	 
+	.android {
+		background-color: #b6b6b6;
+		
+		color: #fff;
+	}
 
-.android span { 
-color: #FFFFFF;
-}
+	.android.toggle {
+		border: 2px solid #b6b6b6;
+	}
 
-.switch *, .toggle * { 
-box-sizing: border-box;
-}
+	.android.toggle .slide-button {
+		border-radius: 2px;
+		
+		background-color: #848484;
+	}
 
-.android.toggle .slide-button { 
-background-color: #848484;
-border-radius: 2px;
-}
+	/* Selected ON toggle */
+	.android.toggle input:first-of-type:checked ~ .slide-button {
+		background-color: #279fca;
+	}
 
-.switch .slide-button, .toggle .slide-button { 
-display: block;
-transition: all 0.3s cubic-bezier(0, 0, 0.58, 1) 0;
-}
+	.android p {
+		color: #333;
+	}
 
-.toggle .slide-button { 
-display: block;
-height: 100%;
-padding: 0px;
-position: absolute;
-right: 0px;
-top: 0px;
-width: 50%;
-z-index: 4;
-}
+	.android span {
+		color: #fff;
+	}
 
-.switch *, .toggle * { 
-box-sizing: border-box;
+	.android span {
+		text-transform: uppercase;
+	}
+    
 }
-
-a { 
-color: #38A3D4;
+.checkbox a {
+    color: #38A3D4;
 }

@@ -25,6 +25,12 @@ namespace fulmvc.Areas.Majorbyte.Controllers
             return queryObj["PercentIdleTime"].ToString(); ;
         }
 
+        public string Fake()
+        {
+            var r = new System.Random();
+            return (r.Next(1000) / 10.0).ToString(); ;
+        }
+
         public ActionResult WebWorker()
         {
             return View();
