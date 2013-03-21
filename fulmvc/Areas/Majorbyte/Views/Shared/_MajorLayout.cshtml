@@ -5,14 +5,18 @@
         <title>@ViewBag.Title - My ASP.NET MVC Application</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/majorbyte")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("major logo here", "Index", "Home")</p>
+                    <p class="site-title">
+                        <a href="/majorbyte/home">
+                            <img src="~/Content/images/majorbyte.jpeg" />
+                        </a>
+                    </p>
                 </div>
                 <div class="float-right">
                     <section id="login">

@@ -17,7 +17,8 @@ namespace fulmvc.Areas.Majorbyte
             context.MapRoute(
                 "Majorbyte_default",
                 "Majorbyte/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new string[]{"fulmvc.Areas.Majorbyte.Controllers"}
             );
         }
     }

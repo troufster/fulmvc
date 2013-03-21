@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "WebWorker";
+    Layout = "~/Areas/Majorbyte/Views/Shared/_MajorLayout.cshtml";
+}
+
+<h2>Web Worker, showing CPU Usage</h2>
+<input type="button" value="start" id="start" />
+<input type="range"  min="100" max="1000" id="slider" value="1000"/><input type="text" readonly="true" id="sliderVal" value="1000" class="tiny"/>ms
+<br />
+<canvas id="myCanvas" width="600" height="220" style="background-color:#ffffff; border: 1px solid black; "></canvas>
+<input type="text" readonly="true" id="cpuVal" class="tiny" style="text-align:right"/>%
+<br />
+<input type="button" value="stop" id="stop" />
+<br />
+<span>inte så mkt mvc dock</span>
+
+
+
+@section scripts {
+<script type="text/javascript">
+    var worker;
+    var canvas, ctx;
+    var previousPoint = -1;
+    var previousMean;
+    var points = [];
+
+    var shiftContext = function (ctx, w, h, dx, dy) {
+        var clamp = function (high, value) { return Math.max(0, Math.min(high, value)); };
+        var imageData = ctx.getImageData(clamp(w, -dx), clamp(h, -dy), clamp(w, w - dx), clamp(h, h - dy));
+        ctx.clearRect(0, 0, w, h);
+        ctx.putImageData(imageData, 0, 0);
+    }
+
+    var shiftImage = function () {
+        shiftContext(ctx, 600, 220, -10, 0);
+    }
+
+    function updateGraph(data, mean) {
+
+        var point = 2 * parseInt(data);
+        mean = 2 * mean;
+
+        if (previousPoint !== -1) {
+            shiftImage();
+            //ctx.beginPath();
+            //ctx.moveTo(589, 10+previousPoint);
+            //ctx.lineTo(599, 10+point);
+
+            ctx.beginPath();
+            ctx.moveTo(590, 20+previousPoint);
+            ctx.lineTo(600, 20+point);
+            ctx.lineTo(600, 220);
+            ctx.lineTo(590, 220);
+            ctx.closePath();
+            ctx.lineWidth =1;
+            ctx.fillStyle = '#dcf3fe';
+            ctx.fill();
+            ctx.strokeStyle = 'blue';
+
+            ctx.beginPath();
+            ctx.moveTo(590, 20 + previousPoint);
+            ctx.lineTo(600, 20 + point);
+            ctx.closePath();
+            ctx.stroke();
+
+            ctx.strokeStyle = 'red';
+            ctx.beginPath();
+            ctx.moveTo(590, 20 + previousMean);
+            ctx.lineTo(600, 20 + mean);
+            ctx.closePath();
+            ctx.stroke();
+
+
+
+        }
+        else {
+            
+        }
+        previousPoint = point;
+        previousMean = mean;
+    };
+
+    function initWorker() {
+        worker = new Worker('/Scripts/majorbyte/worker.js');
+        worker.onmessage = function (e) {
+            var y = parseInt(e.data);
+            $("#cpuVal").val(100 - y);
+            points.push(y);
+
+            if (points.length > 60) {
+                points = points.slice(1);
+            }
+
+            var mean = points.reduce(function(a, b) { return a + b }); 
+            mean = mean / points.length;
+            updateGraph(e.data, mean);
+            
+
+        };
+    };
+
+    $(document).ready(function () {
+
+        initWorker();
+        canvas = document.getElementById("myCanvas");
+        ctx = canvas.getContext("2d");
+   
+        $("#stop").on("click", function () {
+            /*worker.terminate();
+            worker = undefined;*/
+            worker.postMessage({ 'cmd': 'stop'});
+        });
+
+        $("#start").on("click", function () {
+            if (worker === undefined) {
+                initWorker();
+            }
+            worker.postMessage({ 'cmd': 'start'});
+        });
+
+        $("#slider").on("change", function () {
+            var val = $(this).val();
+            worker.postMessage({ 'cmd': 'change', 'value': val });
+            $("#sliderVal").val(val);
+        });
+
+        worker.postMessage({ 'cmd': 'change', 'value': $("#slider").val() });
+    });
+</script>
+}
+
