@@ -5,7 +5,17 @@
 
 <h2>Web Worker, showing CPU Usage</h2>
 <input type="button" value="start" id="start" />
-<input type="range"  min="100" max="1000" id="slider" value="1000"/><input type="text" readonly="true" id="sliderVal" value="1000" class="tiny"/>ms
+<input type="range"  min="1" max="1000" id="slider" value="1000"/><input type="text" readonly="true" id="sliderVal" value="1000" class="tiny"/>ms
+<br />
+<label class="checkbox toggle android" onclick="">
+    http://ghinda.net/css-toggle-switch/
+  <input type="checkbox">
+  <p>Wireless
+    <span>On</span>
+    <span>Off</span>
+  </p>
+  <a class="slide-button"></a>
+</label>
 <br />
 <canvas id="myCanvas" width="600" height="220" style="background-color:#ffffff; border: 1px solid black; "></canvas>
 <input type="text" readonly="true" id="cpuVal" class="tiny" style="text-align:right"/>%
