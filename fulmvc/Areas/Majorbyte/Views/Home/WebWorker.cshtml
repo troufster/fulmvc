@@ -10,7 +10,7 @@
 <canvas id="myCanvas" width="600" height="220" style="background-color:#ffffff; border: 1px solid black; "></canvas>
 <input type="text" readonly="true" id="cpuVal" class="tiny" style="text-align:right"/>%
 <br />
-<input type="button" value="stop" id="stop" />
+<input type="button" value="stop" id="stop" /><input type="button" value="terminate" id="terminate" />
 <br />
 <span>inte så mkt mvc dock</span>
 
@@ -106,14 +106,18 @@
         ctx = canvas.getContext("2d");
    
         $("#stop").on("click", function () {
-            /*worker.terminate();
-            worker = undefined;*/
             worker.postMessage({ 'cmd': 'stop'});
+        });
+
+        $("#terminate").on("click", function () {
+            worker.terminate();
+            worker = undefined;
         });
 
         $("#start").on("click", function () {
             if (worker === undefined) {
                 initWorker();
+                worker.postMessage({ 'cmd': 'change', 'value': $("#slider").val() });
             }
             worker.postMessage({ 'cmd': 'start'});
         });
