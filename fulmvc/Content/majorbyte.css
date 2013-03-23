@@ -34,6 +34,7 @@ a {
 header, footer, hgroup,
 nav, section {
     display: block;
+
 }
 
 mark {
@@ -309,13 +310,35 @@ ol.round {
 
 /* content */
 article {
+    padding-left:5px;
     float: left;
     width: 70%;
+    border-radius: 15px 15px 60px 15px;
+    border: 2px solid #3e5667;
 }
+
+article aside {
+    float: right;
+    width: 29%;
+    border-radius: 15px 15px 55px 15px;
+    border: 2px solid #3e5667;
+}
+
+article header {
+    background-color: #FCE75D;
+}
+
+article p, article > h1 {
+    float:left;
+    width: 70%;
+}
+
 
 aside {
     float: right;
     width: 25%;
+    border-radius: 15px 15px 15px 15px;
+    border: 2px solid #3e5667;
 }
 
     aside ul {
@@ -425,7 +448,7 @@ label {
 }
 
 
-input, textarea {
+input[type="text"], textarea {
     border: 1px solid #e2e2e2;
     background: #fff;
     color: #333;
@@ -715,4 +738,77 @@ https://github.com/ghinda/css-toggle-switch
     padding:0px;
     margin:0px;
     width:45px;
+}
+
+
+.flexdemo p::first-letter 
+     { color:#e80c4d; font-size: 24px;}
+
+
+#myFlexbox {
+  display: -ms-flexbox;
+  color: white;
+  font-size: 48px;
+  font-family: "Segoe UI", "Lucida Grande", Verdana, Arial, sans-serif;
+  text-align: left;
+  height: 200px;
+  border: none;
+}
+#myFlexbox #child1 {
+  -ms-flex-order: 1;
+  background: #43e000;  
+  padding: 20px;
+}
+#myFlexbox #child2 {
+  -ms-flex-order: 0;
+  background: #166aff;
+  padding: 20px;
+}
+#myFlexbox #child3 {
+  -ms-flex-order: 1;
+  background: #43e000;
+  padding: 20px;
+}
+#myFlexbox #child4 {
+  background: #166aff;
+  padding: 20px;
+}
+
+.hideFlexPack {
+    display:none;
+}
+.italic {
+    font-style:italic;
+    display:inline;
+}
+
+.myFlexboxPack {
+  display: -ms-flexbox;
+  -ms-flex-pack: justify;
+  color: white;
+  font-size: 48px;
+  font-family: "Segoe UI", "Lucida Grande", Verdana, Arial, sans-serif;
+  text-align: left;
+  height: 200px;
+  border: none;
+}
+
+.myFlexboxPack #child1 {
+  -ms-flex-order: 1;
+  background: #43e000;  
+  padding: 20px;
+}
+.myFlexboxPack #child2 {
+  -ms-flex-order: 0;
+  background: #166aff;
+  padding: 20px;
+}
+.myFlexboxPack #child3 {
+  -ms-flex-order: 1;
+  background: #43e000;
+  padding: 20px;
+}
+.myFlexboxPack #child4 {
+  background: #166aff;
+  padding: 20px;
 }

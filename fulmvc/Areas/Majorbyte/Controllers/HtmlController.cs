@@ -19,9 +19,14 @@ namespace fulmvc.Areas.Majorbyte.Controllers
         //
         // GET: /Majorbyte/Html/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult FlexBox()
         {
             return View();
+        }
+
+        public PartialViewResult flexorder()
+        {
+            return PartialView("_FlexOrder");
         }
 
         //
