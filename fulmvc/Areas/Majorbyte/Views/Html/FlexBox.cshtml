@@ -16,18 +16,19 @@
 <ol class="round">
     <li class="one">
         <h3>-ms-flex-order</h3>
-        <p>The -ms-flex-order property enables you to place elements in ordinal groups, starting with ordinal group 0.</p>
-        @Ajax.ActionLink("-ms-flex-order", "flexorder", new AjaxOptions { UpdateTargetId="result"})
+        
+        @Ajax.ActionLink("-ms-flex-order", "flexorder",null, new AjaxOptions { UpdateTargetId="result" },new { @class = "button" })
         <div id="result">
 
         </div>
-        <input type="button" class="hideButton" value="hide" />
+
     </li>
     <li class="two">
         <h3>-ms-flex-pack</h3>
       
-        <p>Gets or sets a value that specifies how excess space is distributed (along the axis defined by the -ms-flex-direction property) between child elements of the object.</p>
+       
         <div id="flexpack" class="hideFlexPack" >
+             
             @Html.Partial("_FlexPack")
         </div>
         <input type="button" class="toggleHideButton" value="show" />
@@ -40,7 +41,7 @@
 @section scripts {
     <script type="text/javascript">
         $(document).ready(function () {
-            $(".hideButton").on("click", function () {
+            $(document).on("click", ".hideButton", function () {
                 $("#result").html('');
             });
 
@@ -57,6 +58,7 @@
                 $('.myFlexboxPack').css('-ms-flex-pack', $(this).val());
             })
 
+            $('.button').button();
         });
 
     </script>

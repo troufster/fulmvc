@@ -26,6 +26,7 @@ namespace fulmvc.Areas.Majorbyte.Controllers
 
         public PartialViewResult flexorder()
         {
+            ViewBag.Description = "The -ms-flex-order property enables you to place elements in ordinal groups, starting with ordinal group 0.";
             return PartialView("_FlexOrder");
         }
 
